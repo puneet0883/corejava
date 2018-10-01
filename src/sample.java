@@ -1,4 +1,8 @@
-public class sample {
+import com.sun.org.apache.xerces.internal.xs.StringList;
 
-    String a;
+import java.lang.reflect.Array;
+import java.util.*;
+
+class sample{
+
 }
