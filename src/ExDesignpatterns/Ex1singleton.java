@@ -8,7 +8,7 @@ static DBConnection redisConnection;
         int port;
         String database;
 
-public DBConnection() {
+private DBConnection() {
         try {
         Thread.sleep(2000L);
         } catch (InterruptedException e) {

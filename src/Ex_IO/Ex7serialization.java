@@ -15,6 +15,7 @@ public class Ex7serialization
                     FileOutputStream("/tmp/employee/employee.txt");
             ObjectOutputStream objectOutputStream= new ObjectOutputStream(fileOutputStream);
             objectOutputStream.writeObject(employee1);
+            objectOutputStream.writeObject(employee2);
             objectOutputStream.flush();
             fileOutputStream.close();
         }
@@ -30,6 +31,7 @@ class Employee implements Serializable
     private String name;
     private double salary;
     private String competancy;
+
     public Employee(String name, double salary, String competancy) {
         this.name = name;
         this.salary = salary;
