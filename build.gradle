@@ -1,0 +1,125 @@
+/*
+group 'com.ttn'
+version '1.0-SNAPSHOT'
+apply from : "mytasks.gradle"
+
+apply plugin: 'java'
+
+
+repositories{
+    mavenCentral()
+    maven { url "https://mvnrepository.com/artifact/org.apache.commons/commons-lang3" }
+}
+
+dependencies {
+    testCompile  group: 'junit' , name:'junit' , version: '4.12'
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.1.8'
+}
+
+task runMe(type: JavaExec, dependsOn: 'classes') {
+    main = "com.ttn.Application"
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java']
+        }
+    }
+}
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.ttn.Application'
+
+    }
+
+    */
+/*manifest {
+        into 'resources',{
+            from 'resources'
+        }
+    }*//*
+
+
+
+}
+
+*/
+/*sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java','src/main/java2']
+        }
+    }
+}*//*
+
+
+*/
+/*
+sourceSets {
+    main{
+        resources{
+            srcDirs = ['src/main/resources']
+            exclude 'file1.txt'
+        }
+    }
+}
+*//*
+
+
+*/
+//for making fat jar
+/////////////////////////////////////////////////////////////
+
+group 'com.ttn'
+version '1.0.2-SNAPSHOT'
+
+apply plugin: 'java'
+apply from: 'mytasks.gradle'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+// https://mvnrepository.com/artifact/org.apache.commons/commons-lang3
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.0'
+
+}
+
+jar {
+    /*  manifest {
+  // attributes 'Main-Class': 'com.bootcamp.Application'
+          attributes 'Main-Class': 'com.ttn.Application'
+      }*/
+    manifest {
+        into 'resources', {
+            from 'resources'
+
+        }
+    }
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+sourceSets {
+    main {
+        /*java {
+            srcDirs=['src/main/java','src/main/java2']
+           // srcDirs = ['src/main/java']
+
+        }*/
+
+        resources {
+            srcDirs = ['src/main/resources']
+            exclude 'file1.txt'
+        }
+
+    }
+
+}
